@@ -9,7 +9,7 @@ namespace pingak9
 
         #region PUBLIC_VARIABLES
 
-        public Action onButtonClick;
+        public Action okAction;
         public string title;
         public string message;
         public string ok;
@@ -18,14 +18,14 @@ namespace pingak9
 
         #region PUBLIC_FUNCTIONS
 
-        public static IOSDialogInfo Create(string title, string message, string ok, Action onclick)
+        public static IOSDialogInfo Create(string title, string message, string ok, Action okAction)
         {
             IOSDialogInfo dialog;
             dialog = new GameObject("IOSDialogInfo").AddComponent<IOSDialogInfo>();
             dialog.title = title;
             dialog.message = message;
             dialog.ok = ok;
-            dialog.onButtonClick = onclick;
+            dialog.okAction = okAction;
 
             dialog.init();
             return dialog;
@@ -40,11 +40,11 @@ namespace pingak9
 
         #region IOS_EVENT_LISTENER
 
-        public void OnDialogCallBack(string buttonIndex)
+        public void OnOKCallBack(string message)
         {
-            if (onButtonClick != null)
+            if (okAction != null)
             {
-                onButtonClick();
+                okAction();
             }
             Destroy(gameObject);
         }

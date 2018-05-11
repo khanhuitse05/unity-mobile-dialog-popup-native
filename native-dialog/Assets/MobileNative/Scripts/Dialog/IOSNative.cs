@@ -32,6 +32,9 @@ namespace pingak9
 
         [DllImport("__Internal")]
         private static extern void _TAG_DismissCurrentAlert();
+	
+        [DllImport ("__Internal")]
+        private static extern void _TAG_ShowDatePicker(int mode, double unix);
 
 #endif
 
@@ -60,6 +63,13 @@ namespace pingak9
         {
 #if (UNITY_IPHONE && !UNITY_EDITOR) || DEBUG_MODE
             _TAG_DismissCurrentAlert();
+#endif
+        }
+
+        public static void showDatePicker(int mode, double unix = 0)
+        {
+#if (UNITY_IPHONE && !UNITY_EDITOR) || DEBUG_MODE
+            _TAG_ShowDatePicker(mode, unix);
 #endif
         }
     }

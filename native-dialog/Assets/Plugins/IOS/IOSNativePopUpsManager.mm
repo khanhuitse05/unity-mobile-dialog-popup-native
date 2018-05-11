@@ -25,17 +25,17 @@ static UIAlertController* _currentAllert =  nil;
     
     UIAlertAction *rateAction = [UIAlertAction actionWithTitle:b1 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [IOSNativePopUpsManager unregisterAllertView];
-        UnitySendMessage("IOSDialogNeutral", "OnDialogCallBack",  [DataConvertor NSIntToChar:0]);
+        UnitySendMessage("IOSDialogNeutral", "OnAcceptCallBack",  [DataConvertor NSIntToChar:0]);
     }];
     
     UIAlertAction *laterAction = [UIAlertAction actionWithTitle:b2 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [IOSNativePopUpsManager unregisterAllertView];
-        UnitySendMessage("IOSDialogNeutral", "OnDialogCallBack",  [DataConvertor NSIntToChar:1]);
+        UnitySendMessage("IOSDialogNeutral", "OnNeutralCallBack",  [DataConvertor NSIntToChar:1]);
     }];
 
     UIAlertAction *declineAction = [UIAlertAction actionWithTitle:b3 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [IOSNativePopUpsManager unregisterAllertView];
-        UnitySendMessage("IOSDialogNeutral", "OnDialogCallBack",  [DataConvertor NSIntToChar:2]);
+        UnitySendMessage("IOSDialogNeutral", "OnDeclineCallBack",  [DataConvertor NSIntToChar:2]);
     }];
 
     [alertController addAction:rateAction];
@@ -52,12 +52,12 @@ static UIAlertController* _currentAllert =  nil;
     
     UIAlertAction *yesAction = [UIAlertAction actionWithTitle:b1 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [IOSNativePopUpsManager unregisterAllertView];
-        UnitySendMessage("IOSDialogConfirm", "OnDialogCallBack",  [DataConvertor NSIntToChar:0]);
+        UnitySendMessage("IOSDialogConfirm", "OnYesCallBack",  [DataConvertor NSIntToChar:0]);
     }];
     
     UIAlertAction *noAction = [UIAlertAction actionWithTitle:b2 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [IOSNativePopUpsManager unregisterAllertView];
-        UnitySendMessage("IOSDialogConfirm", "OnDialogCallBack",  [DataConvertor NSIntToChar:1]);
+        UnitySendMessage("IOSDialogConfirm", "OnNoCallBack",  [DataConvertor NSIntToChar:1]);
     }];
     
     [alertController addAction:yesAction];
@@ -74,7 +74,7 @@ static UIAlertController* _currentAllert =  nil;
     
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:b1 style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         [IOSNativePopUpsManager unregisterAllertView];
-        UnitySendMessage("IOSDialogInfo", "OnDialogCallBack",  [DataConvertor NSIntToChar:0]);
+        UnitySendMessage("IOSDialogInfo", "OnOkCallBack",  [DataConvertor NSIntToChar:0]);
     }];
     [alertController addAction:okAction];
     

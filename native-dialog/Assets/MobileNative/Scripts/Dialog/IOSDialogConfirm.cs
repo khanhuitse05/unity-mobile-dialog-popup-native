@@ -8,7 +8,8 @@ namespace pingak9
     {
         #region PUBLIC_VARIABLES
 
-        public Action<int> onButtonClick;
+        public Action yesAction;
+        public Action noAction;
         public string title;
         public string message;
         public string yes;
@@ -20,7 +21,7 @@ namespace pingak9
         #region PUBLIC_FUNCTIONS
 
         // Constructor
-        public static IOSDialogConfirm Create(string title, string message, string yes, string no, Action<int> onclick)
+        public static IOSDialogConfirm Create(string title, string message, string yes, string no, Action yesAction, Action noAction)
         {
             IOSDialogConfirm dialog;
             dialog = new GameObject("IOSDialogConfirm").AddComponent<IOSDialogConfirm>();
@@ -28,7 +29,8 @@ namespace pingak9
             dialog.message = message;
             dialog.yes = yes;
             dialog.no = no;
-            dialog.onButtonClick = onclick;
+            dialog.yesAction = yesAction;
+            dialog.noAction = noAction;
             dialog.init();
             return dialog;
         }
@@ -42,16 +44,22 @@ namespace pingak9
 
         #region IOS_EVENT_LISTENER
 
-        public void OnDialogCallBack(string buttonIndex)
+        public void OnYesCallBack(string message)
         {
-            int index = System.Convert.ToInt16(buttonIndex);
-            if (onButtonClick != null)
+            if (yesAction != null)
             {
-                onButtonClick(index);
+                yesAction();
             }
             Destroy(gameObject);
         }
-
+        public void OnNoCallBack(string message)
+        {
+            if (noAction != null)
+            {
+                noAction();
+            }
+            Destroy(gameObject);
+        }
         #endregion
     }
 }

@@ -3,8 +3,6 @@
 #import <Foundation/Foundation.h>
 #import "DataConvertor.h"
 
-@interface IOSNativePopUpsManager : NSObject
-
-+ (void) unregisterAllertView;
+@interface IOSNativeDatePicker : NSObject
 
 @end

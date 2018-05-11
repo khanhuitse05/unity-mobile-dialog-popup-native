@@ -8,7 +8,9 @@ namespace pingak9
     {
         #region PUBLIC_VARIABLES
 
-        public Action<int> onButtonClick;
+        public Action acceptAction;
+        public Action neutralAction;
+        public Action declineAction;
         public string title;
         public string message;
         public string accept;
@@ -19,7 +21,7 @@ namespace pingak9
 
         #region PUBLIC_FUNCTIONS
 
-        public static IOSDialogNeutral Create(string title, string message, string accept, string neutral, string decline, Action<int> onclick)
+        public static IOSDialogNeutral Create(string title, string message, string accept, string neutral, string decline, Action acceptAction, Action neutralAction, Action declineAction)
         {
             IOSDialogNeutral dialog = new GameObject("IOSDialogNeutral").AddComponent<IOSDialogNeutral>();
             dialog.title = title;
@@ -27,7 +29,9 @@ namespace pingak9
             dialog.accept = accept;
             dialog.neutral = neutral;
             dialog.decline = decline;
-            dialog.onButtonClick = onclick;
+            dialog.acceptAction = acceptAction;
+            dialog.neutralAction = neutralAction;
+            dialog.declineAction = declineAction;
 
             dialog.init();
             return dialog;
@@ -42,16 +46,31 @@ namespace pingak9
 
         #region IOS_EVENT_LISTENER
 
-        public void OnDialogCallBack(string buttonIndex)
+        public void OnAcceptCallBack(string message)
         {
-            int index = System.Convert.ToInt16(buttonIndex);
-            if (onButtonClick != null)
+            if (acceptAction != null)
             {
-                onButtonClick(index);
+                acceptAction();
             }
             Destroy(gameObject);
         }
 
+        public void OnNeutralCallBack(string message)
+        {
+            if (acceptAction != null)
+            {
+                acceptAction();
+            }
+            Destroy(gameObject);
+        }
+        public void OnDeclineCallBack(string message)
+        {
+            if (acceptAction != null)
+            {
+                acceptAction();
+            }
+            Destroy(gameObject);
+        }
         #endregion
     }
 }
