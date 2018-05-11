@@ -30,11 +30,12 @@ public class Bridge {
         activity.DismissCurrentAlert();
     }
 
-    public static void ShowDatePicker(int mode, double unix) {
+    public static void ShowDatePicker(int year, int month, int day) {
         MainActivity activity = (MainActivity)UnityPlayer.currentActivity;
-        if (mode == 1)
-            activity.ShowDatePicker(unix);
-        else
-            activity.ShowTimePicker();
+        activity.ShowDatePicker(year, month, day);
+    }
+    public static void ShowTimePicker() {
+        MainActivity activity = (MainActivity)UnityPlayer.currentActivity;
+        activity.ShowTimePicker();
     }
 }

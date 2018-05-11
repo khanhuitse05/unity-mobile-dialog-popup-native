@@ -13,6 +13,8 @@ import android.widget.TimePicker;
 import com.unity3d.player.UnityPlayer;
 import com.unity3d.player.UnityPlayerActivity;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -22,18 +24,15 @@ public class MainActivity extends UnityPlayerActivity
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UnityPlayer.UnitySendMessage("PopupView", "DebugLog", "onCreate");
 
     }
     @Override
     public void onDestroy()    {
         super.onDestroy();
-        UnityPlayer.UnitySendMessage("PopupView", "DebugLog", "onDestroy");
     }
 
 
     public void ShowDialogNeutral(String title, String message, String accept, String neutral, String decline) {
-        UnityPlayer.UnitySendMessage("PopupView", "DebugLog", "ShowDialogNeutral");
         AlertDialog alertDialog = new AlertDialog.Builder(this).create(); //Read Update
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
@@ -43,12 +42,12 @@ public class MainActivity extends UnityPlayerActivity
                 UnityPlayer.UnitySendMessage("MobileDialogNeutral", "OnAcceptCallBack", "0");
             }
         });
-        alertDialog.setButton(neutral, new DialogInterface.OnClickListener() {
+        alertDialog.setButton2(neutral, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 UnityPlayer.UnitySendMessage("MobileDialogNeutral", "OnNeutralCallBack", "1");
             }
         });
-        alertDialog.setButton(decline, new DialogInterface.OnClickListener() {
+        alertDialog.setButton3(decline, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 UnityPlayer.UnitySendMessage("MobileDialogNeutral", "OnDeclineCallBack", "2");
             }
@@ -57,7 +56,6 @@ public class MainActivity extends UnityPlayerActivity
     }
 
     public void ShowDialogConfirm(String title, String message, String yes, String no) {
-        UnityPlayer.UnitySendMessage("PopupView", "DebugLog", "ShowDialogConfirm");
         AlertDialog alertDialog = new AlertDialog.Builder(this).create(); //Read Update
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
@@ -67,7 +65,7 @@ public class MainActivity extends UnityPlayerActivity
                 UnityPlayer.UnitySendMessage("MobileDialogConfirm", "OnYesCallBack", "0");
             }
         });
-        alertDialog.setButton(no, new DialogInterface.OnClickListener() {
+        alertDialog.setButton2(no, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 UnityPlayer.UnitySendMessage("MobileDialogConfirm", "OnNoCallBack", "1");
             }
@@ -77,7 +75,6 @@ public class MainActivity extends UnityPlayerActivity
 
     public void ShowDialogInfo(String title, String message, String ok) {
 
-        UnityPlayer.UnitySendMessage("PopupView", "DebugLog", "ShowDialogInfo");
         AlertDialog alertDialog = new AlertDialog.Builder(this).create(); //Read Update
         alertDialog.setTitle(title);
         alertDialog.setMessage(message);
@@ -95,17 +92,10 @@ public class MainActivity extends UnityPlayerActivity
 
     }
 
-    public void ShowDatePicker(double unix) {
-        UnityPlayer.UnitySendMessage("PopupView", "DebugLog", "ShowDatePicker");
-        long myLong = System.currentTimeMillis() + ((long) (unix * 1000));
-        Date itemDate = new Date(myLong);
-
-        int year = itemDate.getYear();
-        int month =  itemDate.getMonth();
-        int day =  itemDate.getDay();
-
+    public void ShowDatePicker(int year, int month, int day) {
         // Create a new instance of DatePickerDialog and return it
         DatePickerDialog datePickerDialog = new DatePickerDialog(this, onDateSetListener, year, month, day);
+        datePickerDialog.show();
     }
 
     DatePickerDialog.OnDateSetListener   onDateSetListener ;
@@ -116,19 +106,13 @@ public class MainActivity extends UnityPlayerActivity
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                Date date = new Date();
-                date.setYear(year);
-                date.setMonth(monthOfYear);
-                date.setDate(dayOfMonth);
-
-                UnityPlayer.UnitySendMessage("MobileDateTimePicker", "PickerClosedEvent", date.toString());
-                UnityPlayer.UnitySendMessage("MobileDateTimePicker", "DateChangedEvent", date.toString());
+                String s = String.format("%d-%d-%d %d:%d:%d", year, monthOfYear, dayOfMonth,0,0,0);
+                UnityPlayer.UnitySendMessage("MobileDateTimePicker", "PickerClosedEvent", s);
             }
         };
     }
 
     public void ShowTimePicker() {
-        UnityPlayer.UnitySendMessage("PopupView", "DebugLog", "ShowTimePicker");
         // Use the current time as the default values for the picker
         final Calendar c = Calendar.getInstance();
         int hour = c.get(Calendar.HOUR_OF_DAY);
@@ -136,6 +120,7 @@ public class MainActivity extends UnityPlayerActivity
 
         // Create a new instance of TimePickerDialog and return it
         TimePickerDialog timePickerDialog = new TimePickerDialog(this, onTimeSetListener, hour, minute, true);
+        timePickerDialog.show();
     }
     TimePickerDialog.OnTimeSetListener  onTimeSetListener;
 
@@ -145,12 +130,8 @@ public class MainActivity extends UnityPlayerActivity
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-                Date date = new Date();
-                date.setHours(hourOfDay);
-                date.setMinutes(minute);
-
-                UnityPlayer.UnitySendMessage("MobileDateTimePicker", "PickerClosedEvent", date.toString());
-                UnityPlayer.UnitySendMessage("MobileDateTimePicker", "DateChangedEvent", date.toString());
+                String s = String.format("%d-%d-%d %d:%d:%d",1970,1,1, hourOfDay, minute, 0);
+                UnityPlayer.UnitySendMessage("MobileDateTimePicker", "PickerClosedEvent", s);
             }
         };
     }
