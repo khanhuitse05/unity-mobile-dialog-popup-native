@@ -45,7 +45,7 @@
     
     NSLog(@"DateChangedEvent: %@", dateString);
     
-    UnitySendMessage("IOSDateTimePicker", "DateChangedEvent", [DataConvertor NSStringToChar:dateString]);
+    UnitySendMessage("MobileDateTimePicker", "DateChangedEvent", [DataConvertor NSStringToChar:dateString]);
 }
 
 +(void) DP_PickerClosed:(UIDatePicker *)sender {
@@ -56,7 +56,7 @@
     
     NSLog(@"DateChangedEvent: %@", dateString);
     
-    UnitySendMessage("IOSDateTimePicker", "PickerClosed", [DataConvertor NSStringToChar:dateString]);
+    UnitySendMessage("MobileDateTimePicker", "PickerClosedEvent", [DataConvertor NSStringToChar:dateString]);
     
 }
 

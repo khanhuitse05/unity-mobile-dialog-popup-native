@@ -4,7 +4,7 @@ using System;
 
 namespace pingak9
 {
-    public class IOSDialogConfirm : MonoBehaviour
+    public class MobileDialogConfirm : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
 
@@ -21,10 +21,10 @@ namespace pingak9
         #region PUBLIC_FUNCTIONS
 
         // Constructor
-        public static IOSDialogConfirm Create(string title, string message, string yes, string no, Action yesAction, Action noAction)
+        public static MobileDialogConfirm Create(string title, string message, string yes, string no, Action yesAction, Action noAction)
         {
-            IOSDialogConfirm dialog;
-            dialog = new GameObject("IOSDialogConfirm").AddComponent<IOSDialogConfirm>();
+            MobileDialogConfirm dialog;
+            dialog = new GameObject("MobileDialogConfirm").AddComponent<MobileDialogConfirm>();
             dialog.title = title;
             dialog.message = message;
             dialog.yes = yes;
@@ -37,7 +37,7 @@ namespace pingak9
 
         public void init()
         {
-            IOSNative.showDialogConfirm(title, message, yes, no);
+            MobileNative.showDialogConfirm(title, message, yes, no);
         }
 
         #endregion

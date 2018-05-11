@@ -10,15 +10,12 @@ namespace pingak9
 {
     public enum IOSDateTimePickerMode
     {
-
         Time = 1, // Displays hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. 6 | 53 | PM)
         Date = 2, // Displays month, day, and year depending on the locale setting (e.g. November | 15 | 2007)
-        DateAndTime = 3, // Displays date, hour, minute, and optionally AM/PM designation depending on the locale setting (e.g. Wed Nov 15 | 6 | 53 | PM)
-        CountdownTimer = 4 // Displays hour and minute (e.g. 1 | 53)
     }
 
 
-    public class IOSDateTimePicker : MonoBehaviour
+    public class MobileDateTimePicker : MonoBehaviour
     {
 
 
@@ -31,10 +28,10 @@ namespace pingak9
 
         #region PUBLIC_FUNCTIONS
 
-        public static IOSDateTimePicker Create(IOSDateTimePickerMode mode, double unix = 0, Action<DateTime> onChange = null, Action<DateTime> onClose = null)
+        public static MobileDateTimePicker Create(IOSDateTimePickerMode mode, double unix = 0, Action<DateTime> onChange = null, Action<DateTime> onClose = null)
         {
-            IOSDateTimePicker dialog;
-            dialog = new GameObject("IOSDateTimePicker").AddComponent<IOSDateTimePicker>();
+            MobileDateTimePicker dialog;
+            dialog = new GameObject("MobileDateTimePicker").AddComponent<MobileDateTimePicker>();
             dialog.mode = mode;
             dialog.unix = unix;
             dialog.OnDateChanged = onChange;
@@ -46,7 +43,7 @@ namespace pingak9
 
         public void init()
         {
-            IOSNative.showDatePicker((int)mode, unix);
+            MobileNative.showDatePicker((int)mode, unix);
         }
 
         #endregion
@@ -65,7 +62,7 @@ namespace pingak9
                 OnDateChanged(dt);
         }
 
-        private void PickerClosed(string time)
+        private void PickerClosedEvent(string time)
         {
             DateTime dt = DateTime.Parse(time);
 

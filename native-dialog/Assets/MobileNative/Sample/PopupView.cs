@@ -7,7 +7,7 @@ using System;
 public class PopupView : MonoBehaviour
 {
     public Text txtLog;
-    void DebugLog(string log)
+    public void DebugLog(string log)
     {
         txtLog.text = log;
         Debug.Log(log);
@@ -53,32 +53,16 @@ public class PopupView : MonoBehaviour
     public void OnDatePicker()
     {
         _mode = _mode + 1;
-        if (_mode == 5) _mode = 1;
-
-        if (_mode == (int)IOSDateTimePickerMode.Date)
-        {
-            NativeDialog.OpenDatePicker((IOSDateTimePickerMode)_mode, DateTime.Now.ToOADate(),
-                (DateTime _date) =>
-                {
-                    DebugLog(_date.ToString());
-                },
-                (DateTime _date) =>
-                {
-                    DebugLog(_date.ToString());
-                });
-        }
-        else
-        {
-
-            NativeDialog.OpenDatePicker((IOSDateTimePickerMode)_mode, 0,
-                (DateTime _date) =>
-                {
-                    DebugLog(_date.ToString());
-                },
-                (DateTime _date) =>
-                {
-                    DebugLog(_date.ToString());
-                });
-        }
+        if (_mode == 3) _mode = 1;
+        int _now = _mode == 2 ? (int)DateTime.Now.ToOADate() : 0;
+        NativeDialog.OpenDatePicker((IOSDateTimePickerMode)_mode, _now,
+            (DateTime _date) =>
+            {
+                DebugLog(_date.ToString());
+            },
+            (DateTime _date) =>
+            {
+                DebugLog(_date.ToString());
+            });        
     }
 }

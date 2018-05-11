@@ -10,27 +10,19 @@ namespace pingak9
 
         public static void OpenDialog(string title, string message, string ok = "Ok", Action okAction = null)
         {
-#if UNITY_IPHONE
-            IOSDialogInfo.Create(title, message, ok, okAction);
-#endif
+            MobileDialogInfo.Create(title, message, ok, okAction);
         }
         public static void OpenDialog(string title, string message, string yes, string no, Action yesAction = null, Action noAction = null)
         {
-#if UNITY_IPHONE
-            IOSDialogConfirm.Create(title, message, yes, no, yesAction, noAction);
-#endif
+            MobileDialogConfirm.Create(title, message, yes, no, yesAction, noAction);
         }
         public static void OpenDialog(string title, string message, string accept, string neutral, string decline, Action acceptAction = null, Action neutralAction = null, Action declineAction = null)
         {
-#if UNITY_IPHONE
-            IOSDialogNeutral.Create(title, message, accept, neutral, decline, acceptAction, neutralAction, declineAction);
-#endif
+            MobileDialogNeutral.Create(title, message, accept, neutral, decline, acceptAction, neutralAction, declineAction);
         }
         public static void OpenDatePicker(IOSDateTimePickerMode mode, double unix = 0, Action<DateTime> onChange = null, Action<DateTime> onClose = null)
         {
-#if UNITY_IPHONE
-            IOSDateTimePicker.Create(mode, unix, onChange, onClose);
-#endif
+            MobileDateTimePicker.Create(mode, unix, onChange, onClose);
         }
     }
 }

@@ -4,7 +4,7 @@ using System;
 
 namespace pingak9
 {
-    public class IOSDialogNeutral : MonoBehaviour
+    public class MobileDialogNeutral : MonoBehaviour
     {
         #region PUBLIC_VARIABLES
 
@@ -21,9 +21,9 @@ namespace pingak9
 
         #region PUBLIC_FUNCTIONS
 
-        public static IOSDialogNeutral Create(string title, string message, string accept, string neutral, string decline, Action acceptAction, Action neutralAction, Action declineAction)
+        public static MobileDialogNeutral Create(string title, string message, string accept, string neutral, string decline, Action acceptAction, Action neutralAction, Action declineAction)
         {
-            IOSDialogNeutral dialog = new GameObject("IOSDialogNeutral").AddComponent<IOSDialogNeutral>();
+            MobileDialogNeutral dialog = new GameObject("MobileDialogNeutral").AddComponent<MobileDialogNeutral>();
             dialog.title = title;
             dialog.message = message;
             dialog.accept = accept;
@@ -39,7 +39,7 @@ namespace pingak9
 
         public void init()
         {
-            IOSNative.showDialogNeutral(title, message, accept, neutral, decline);
+            MobileNative.showDialogNeutral(title, message, accept, neutral, decline);
         }
 
         #endregion
@@ -57,17 +57,17 @@ namespace pingak9
 
         public void OnNeutralCallBack(string message)
         {
-            if (acceptAction != null)
+            if (neutralAction != null)
             {
-                acceptAction();
+                neutralAction();
             }
             Destroy(gameObject);
         }
         public void OnDeclineCallBack(string message)
         {
-            if (acceptAction != null)
+            if (declineAction != null)
             {
-                acceptAction();
+                declineAction();
             }
             Destroy(gameObject);
         }
