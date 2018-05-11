@@ -20,9 +20,13 @@ namespace pingak9
         {
             MobileDialogNeutral.Create(title, message, accept, neutral, decline, acceptAction, neutralAction, declineAction);
         }
-        public static void OpenDatePicker(IOSDateTimePickerMode mode, double unix = 0, Action<DateTime> onChange = null, Action<DateTime> onClose = null)
+        public static void OpenDatePicker(int year , int month, int day, Action<DateTime> onChange = null, Action<DateTime> onClose = null)
         {
-            MobileDateTimePicker.Create(mode, unix, onChange, onClose);
+            MobileDateTimePicker.CreateDate(year, month, day, onChange, onClose);
+        }
+        public static void OpenTimePicker(Action<DateTime> onChange = null, Action<DateTime> onClose = null)
+        {
+            MobileDateTimePicker.CreateTime(onChange, onClose);
         }
     }
 }

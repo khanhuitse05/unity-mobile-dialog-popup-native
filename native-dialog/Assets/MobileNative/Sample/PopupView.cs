@@ -49,13 +49,10 @@ public class PopupView : MonoBehaviour
                 DebugLog("No Button pressed");
             });
     }
-    int _mode = 0;
+
     public void OnDatePicker()
     {
-        _mode = _mode + 1;
-        if (_mode == 3) _mode = 1;
-        int _now = _mode == 2 ? (int)DateTime.Now.ToOADate() : 0;
-        NativeDialog.OpenDatePicker((IOSDateTimePickerMode)_mode, _now,
+        NativeDialog.OpenDatePicker(1992,5,10,
             (DateTime _date) =>
             {
                 DebugLog(_date.ToString());
@@ -64,5 +61,17 @@ public class PopupView : MonoBehaviour
             {
                 DebugLog(_date.ToString());
             });        
+    }
+    public void OnTimePicker()
+    {
+        NativeDialog.OpenTimePicker(
+            (DateTime _date) =>
+            {
+                DebugLog(_date.ToString());
+            },
+            (DateTime _date) =>
+            {
+                DebugLog(_date.ToString());
+            });
     }
 }

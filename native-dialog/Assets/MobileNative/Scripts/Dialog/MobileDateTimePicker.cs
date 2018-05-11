@@ -1,10 +1,5 @@
 ﻿using UnityEngine;
 using System;
-using System.Collections;
-
-#if (UNITY_IPHONE && !UNITY_EDITOR) || SA_DEBUG_MODE
-using System.Runtime.InteropServices;
-#endif
 
 namespace pingak9
 {
@@ -17,33 +12,32 @@ namespace pingak9
 
     public class MobileDateTimePicker : MonoBehaviour
     {
-
-
         public Action<DateTime> OnDateChanged;
         public Action<DateTime> OnPickerClosed;
-        public IOSDateTimePickerMode mode;
-        public double unix = 0;
-
 
 
         #region PUBLIC_FUNCTIONS
 
-        public static MobileDateTimePicker Create(IOSDateTimePickerMode mode, double unix = 0, Action<DateTime> onChange = null, Action<DateTime> onClose = null)
+        public static MobileDateTimePicker CreateDate(int year, int month, int day, Action<DateTime> onChange = null, Action<DateTime> onClose = null)
         {
             MobileDateTimePicker dialog;
             dialog = new GameObject("MobileDateTimePicker").AddComponent<MobileDateTimePicker>();
-            dialog.mode = mode;
-            dialog.unix = unix;
             dialog.OnDateChanged = onChange;
             dialog.OnPickerClosed = onClose;
 
-            dialog.init();
+            MobileNative.showDatePicker(year, month, day);
             return dialog;
         }
 
-        public void init()
+        public static MobileDateTimePicker CreateTime(Action<DateTime> onChange = null, Action<DateTime> onClose = null)
         {
-            MobileNative.showDatePicker((int)mode, unix);
+            MobileDateTimePicker dialog;
+            dialog = new GameObject("MobileDateTimePicker").AddComponent<MobileDateTimePicker>();
+            dialog.OnDateChanged = onChange;
+            dialog.OnPickerClosed = onClose;
+
+            MobileNative.showTimePicker();
+            return dialog;
         }
 
         #endregion
@@ -54,18 +48,17 @@ namespace pingak9
         // Events
         //--------------------------------------
 
-        private void DateChangedEvent(string time)
+        string formatDate = "yyyy-MM-dd HH:mm:ss";
+        public void DateChangedEvent(string time)
         {
             DateTime dt = DateTime.Parse(time);
-
-            if (OnDateChanged != null)
+            if (OnDateChanged!= null)
                 OnDateChanged(dt);
         }
 
-        private void PickerClosedEvent(string time)
+        public void PickerClosedEvent(string time)
         {
             DateTime dt = DateTime.Parse(time);
-
             if (OnPickerClosed != null)
                 OnPickerClosed(dt);
         }

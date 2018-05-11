@@ -101,6 +101,8 @@ UIDatePicker *datePicker;
             
         case 2:
             datePicker.datePickerMode = UIDatePickerModeDate;
+			NSDate *dateTraded = [NSDate dateWithTimeIntervalSince1970 :unix];
+			[datePicker setDate:dateTraded];
             break;
             
         case 3:
@@ -115,8 +117,6 @@ UIDatePicker *datePicker;
             break;
     }
 	
- NSDate *dateTraded = [NSDate dateWithTimeIntervalSince1970 :unix];
-	[datePicker setDate:dateTraded];
     
     // NSLog(@"dtp mode: %ld", (long)datePicker.datePickerMode);
     

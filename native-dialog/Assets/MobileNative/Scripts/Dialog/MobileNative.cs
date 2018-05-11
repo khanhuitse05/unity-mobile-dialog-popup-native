@@ -2,6 +2,7 @@
 
 
 #if (UNITY_IPHONE && !UNITY_EDITOR) || DEBUG_MODE
+using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
 #endif
@@ -74,14 +75,26 @@ namespace pingak9
 #endif
         }
 
-        public static void showDatePicker(int mode, double unix = 0)
+        public static void showDatePicker(int year, int month, int day)
         {
 #if UNITY_EDITOR
 #elif UNITY_IPHONE
-            _TAG_ShowDatePicker(mode, unix);
+            DateTime dateTime = new DateTime(year, month, day);
+            double unix = (TimeZoneInfo.ConvertTimeToUtc(dateTime) - new DateTime(1970, 1, 1, 0, 0, 0, 0, System.DateTimeKind.Utc)).TotalSeconds; 
+            _TAG_ShowDatePicker(2, unix);
 #elif UNITY_ANDROID
             AndroidJavaClass javaUnityClass = new AndroidJavaClass("com.pingak9.nativepopup.Bridge");
-            javaUnityClass.CallStatic("ShowDatePicker", mode, unix);
+            javaUnityClass.CallStatic("ShowDatePicker", year, month, day);
+#endif
+        }
+        public static void showTimePicker()
+        {
+#if UNITY_EDITOR
+#elif UNITY_IPHONE
+            _TAG_ShowDatePicker(1, 0);
+#elif UNITY_ANDROID
+            AndroidJavaClass javaUnityClass = new AndroidJavaClass("com.pingak9.nativepopup.Bridge");
+            javaUnityClass.CallStatic("ShowTimePicker");
 #endif
         }
     }
