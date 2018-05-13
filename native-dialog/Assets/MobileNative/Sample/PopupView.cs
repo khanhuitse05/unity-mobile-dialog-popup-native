@@ -3,6 +3,7 @@ using System.Collections;
 using pingak9;
 using UnityEngine.UI;
 using System;
+using System.Globalization;
 
 public class PopupView : MonoBehaviour
 {

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System;
+using System.Globalization;
 
 namespace pingak9
 {
@@ -49,9 +50,14 @@ namespace pingak9
         //--------------------------------------
 
         string formatDate = "yyyy-MM-dd HH:mm:ss";
+        /// <summary>
+        /// Note avalible in android
+        /// </summary>
+        /// <param name="time"></param>
         public void DateChangedEvent(string time)
         {
             DateTime dt = DateTime.Parse(time);
+            //DateTime dt = DateTime.ParseExact(time, formatDate, CultureInfo.InvariantCulture);
             if (OnDateChanged!= null)
                 OnDateChanged(dt);
         }
@@ -59,6 +65,7 @@ namespace pingak9
         public void PickerClosedEvent(string time)
         {
             DateTime dt = DateTime.Parse(time);
+            //DateTime dt = DateTime.ParseExact(time, formatDate, CultureInfo.InvariantCulture);
             if (OnPickerClosed != null)
                 OnPickerClosed(dt);
         }
