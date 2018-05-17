@@ -1,11 +1,7 @@
-﻿#define DEBUG_MODE
-
-
-#if (UNITY_IPHONE && !UNITY_EDITOR) || DEBUG_MODE
+﻿
 using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
-#endif
 
 namespace pingak9
 {
@@ -13,7 +9,7 @@ namespace pingak9
     public class MobileNative
     {
 
-#if (UNITY_IPHONE && !UNITY_EDITOR) || DEBUG_MODE
+#if UNITY_IPHONE
         [DllImport("__Internal")]
         private static extern void _TAG_ShowDialogNeutral(string title, string message, string accept, string neutral, string decline);
 
