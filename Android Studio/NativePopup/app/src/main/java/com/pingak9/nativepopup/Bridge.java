@@ -87,11 +87,11 @@ public class Bridge {
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                        String s = String.format("%d-%d-%d %d:%d:%d", year, monthOfYear, dayOfMonth,0,0,0);
+                        String s = String.format("%d-%d-%d %d:%d:%d", year, monthOfYear+1, dayOfMonth,0,0,0);
                         UnityPlayer.UnitySendMessage("MobileDateTimePicker", "PickerClosedEvent", s);
                     }
                 },
-                year, month, day);
+                year, month - 1, day);
         datePickerDialog.show();
     }
 
