@@ -9,7 +9,9 @@ import android.widget.TimePicker;
 
 import com.unity3d.player.UnityPlayer;
 
+import java.sql.Time;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by PingAK9
@@ -105,8 +107,11 @@ public class Bridge {
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-                        String s = String.format("%d-%d-%d %d:%d:%d",1970,1,1, hourOfDay, minute, 0);
+                        int yeah = c.get(Calendar.YEAR);
+                        int day = c.get(Calendar.DAY_OF_MONTH);
+                        int month = c.get(Calendar.MONTH);
+                        Calendar c = Calendar.getInstance();
+                        String s = String.format("%d-%d-%d %d:%d:%d",yeah,month +1,day, hourOfDay, minute, 0);
                         UnityPlayer.UnitySendMessage("MobileDateTimePicker", "PickerClosedEvent", s);
                     }
                 }, hour, minute, true);
