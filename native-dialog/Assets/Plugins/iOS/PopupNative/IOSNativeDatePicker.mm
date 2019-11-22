@@ -105,16 +105,6 @@ UIDatePicker *datePicker;
 			[datePicker setDate:dateTraded];
             break;
             
-        case 3:
-            datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-            break;
-            
-        case 4:
-            datePicker.datePickerMode = UIDatePickerModeCountDownTimer;
-            break;
-            
-        default:
-            break;
     }
 	
     
