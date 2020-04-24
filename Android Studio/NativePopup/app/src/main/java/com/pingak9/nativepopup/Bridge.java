@@ -1,4 +1,4 @@
-package com.pingak9.nativepopup;
+package com.boolable.nativepopup;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by PingAK9
+ * Created by PingAK9 modified by Boolable
  */
 public class Bridge {
 
@@ -97,10 +97,8 @@ public class Bridge {
         datePickerDialog.show();
     }
 
-    public static void ShowTimePicker() {
+    public static void ShowTimePicker(int hour, int minute) {
         final Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
 
         // Create a new instance of TimePickerDialog and return it
         TimePickerDialog timePickerDialog = new TimePickerDialog(UnityPlayer.currentActivity,
