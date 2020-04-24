@@ -1,4 +1,4 @@
-package com.boolable.nativepopup;
+package com.pingak9.nativepopup;
 
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
@@ -14,7 +14,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Created by PingAK9 modified by Boolable
+ * Created by PingAK9
  */
 public class Bridge {
 
