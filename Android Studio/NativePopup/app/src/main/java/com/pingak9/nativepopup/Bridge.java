@@ -97,10 +97,8 @@ public class Bridge {
         datePickerDialog.show();
     }
 
-    public static void ShowTimePicker() {
+    public static void ShowTimePicker(int hour, int minute) {
         final Calendar c = Calendar.getInstance();
-        int hour = c.get(Calendar.HOUR_OF_DAY);
-        int minute = c.get(Calendar.MINUTE);
 
         // Create a new instance of TimePickerDialog and return it
         TimePickerDialog timePickerDialog = new TimePickerDialog(UnityPlayer.currentActivity,
