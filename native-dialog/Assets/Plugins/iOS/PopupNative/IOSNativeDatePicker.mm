@@ -74,7 +74,7 @@ UIDatePicker *datePicker;
     
     UIView *darkView = [[UIView alloc] initWithFrame:CGRectMake(0, vc.view.bounds.size.height, [self GetW], 260)];
     darkView.alpha = 1;
-    darkView.backgroundColor = [UIColor whiteColor];
+    darkView.backgroundColor = [UIColor blackColor];
     darkView.tag = 9;
     
     UIView *whiteView = [[UIView alloc] initWithFrame:vc.view.bounds];
