@@ -6,3 +6,6 @@
 .DS_Store
 /build
 /captures
+
+#Project Rider settings
+.idea
