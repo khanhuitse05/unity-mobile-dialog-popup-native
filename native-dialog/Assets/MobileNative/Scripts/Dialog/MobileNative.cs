@@ -38,14 +38,22 @@ namespace pingak9
 #endif
         }
 
-        public static void showDialogConfirm(string title, string message, string yes, string no)
+        /// <summary>
+        /// Calls a Native Confirm Dialog on iOS and Android
+        /// </summary>
+        /// <param name="title">Dialog title text</param>
+        /// <param name="message">Dialog message text</param>
+        /// <param name="yes">Accept Button text</param>
+        /// <param name="no">Cancel Button text</param>
+        /// <param name="cancelable">Android only. Allows setting the cancelable property of the dialog</param>
+        public static void showDialogConfirm(string title, string message, string yes, string no, bool cancelable = true)
         {
 #if UNITY_EDITOR
 #elif UNITY_IPHONE
             _TAG_ShowDialogConfirm(title, message, yes, no);
 #elif UNITY_ANDROID            
             AndroidJavaClass javaUnityClass = new AndroidJavaClass("com.pingak9.nativepopup.Bridge");
-            javaUnityClass.CallStatic("ShowDialogConfirm", title, message, yes, no);
+            javaUnityClass.CallStatic("ShowDialogConfirm", title, message, yes, no, cancelable);
 #endif
         }
 
