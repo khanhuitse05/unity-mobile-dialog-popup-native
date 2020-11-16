@@ -43,22 +43,40 @@ public class Bridge {
         alertDialog.show();
     }
 
-    public static void ShowDialogConfirm(String title, String message, String yes, String no) {
-        DismissCurrentAlert();
-        alertDialog = new AlertDialog.Builder(UnityPlayer.currentActivity).create(); //Read Update
-        alertDialog.setTitle(title);
-        alertDialog.setMessage(message);
+    private static AlertDialog CreateDialogConfirm(String title, String message, String yes, String no) {
+        AlertDialog dialog = new AlertDialog.Builder(UnityPlayer.currentActivity).create(); //Read Update
+        dialog.setTitle(title);
+        dialog.setMessage(message);
 
-        alertDialog.setButton(yes, new DialogInterface.OnClickListener() {
+        dialog.setButton(yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 UnityPlayer.UnitySendMessage("MobileDialogConfirm", "OnYesCallBack", "0");
             }
         });
-        alertDialog.setButton2(no, new DialogInterface.OnClickListener() {
+        dialog.setButton2(no, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 UnityPlayer.UnitySendMessage("MobileDialogConfirm", "OnNoCallBack", "1");
             }
         });
+
+        return dialog;
+    }
+
+    public static void ShowDialogConfirm(String title, String message, String yes, String no) {
+        DismissCurrentAlert();
+
+        alertDialog = CreateDialogConfirm(title, message, yes, no);
+
+        alertDialog.show();
+    }
+
+    // Method overload for supporting non cancelable dialog
+    public static void ShowDialogConfirm(String title, String message, String yes, String no, boolean cancelable) {
+        DismissCurrentAlert();
+
+        alertDialog = CreateDialogConfirm(title, message, yes, no);
+        alertDialog.setCancelable((cancelable));
+
         alertDialog.show();
     }
 
