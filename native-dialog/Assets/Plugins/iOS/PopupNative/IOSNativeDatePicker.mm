@@ -74,15 +74,21 @@ UIDatePicker *datePicker;
     
     UIView *darkView = [[UIView alloc] initWithFrame:CGRectMake(0, vc.view.bounds.size.height, [self GetW], 260)];
     darkView.alpha = 1;
-    if (@available(iOS 12.0, *)) {
-        if (darkView.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
-            darkView.backgroundColor = [UIColor blackColor];
+
+    if (@available(iOS 13.0, *)) {
+        darkView.backgroundColor = [UIColor systemGray5Color];
+    } else {
+        if (@available(iOS 12.0, *)) {
+            if (darkView.traitCollection.userInterfaceStyle == UIUserInterfaceStyleDark) {
+                darkView.backgroundColor = [UIColor blackColor];
+            } else {
+                darkView.backgroundColor = [UIColor whiteColor];
+            }
         } else {
             darkView.backgroundColor = [UIColor whiteColor];
         }
-    } else {
-        darkView.backgroundColor = [UIColor whiteColor];
     }
+
     darkView.tag = 9;
     
     UIView *whiteView = [[UIView alloc] initWithFrame:vc.view.bounds];
@@ -109,6 +115,9 @@ UIDatePicker *datePicker;
             
         case 2:
             datePicker.datePickerMode = UIDatePickerModeDate;
+             if (@available(iOS 13.4, *)) {
+                datePicker.preferredDatePickerStyle = UIDatePickerStyleWheels;
+            }
             NSDate *dateTraded = [NSDate dateWithTimeIntervalSince1970 :unix];
             [datePicker setDate:dateTraded];
             break;
