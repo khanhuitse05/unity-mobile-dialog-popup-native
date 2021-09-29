@@ -13,7 +13,7 @@
 
 ## Easy access from Unity
 Welcome to Native Popups for iOS and Android! This plugin provides easy access from Unity to the native functionality of iOS and Android for displaying popups
-```
+```csharp
     public void OnDialogInfo()
     {
         NativeDialog.OpenDialog("Info popup", "Welcome To Native Popup", "Ok", 
@@ -22,32 +22,7 @@ Welcome to Native Popups for iOS and Android! This plugin provides easy access f
             });
     }
 
-    public void OnDialogConfirm()
-    {
-        NativeDialog.OpenDialog("Confirm popup", "Do you wants about app?", "Yes", "No",
-            () => {
-                Debug.Log("Yes Button pressed");
-            },
-            () => {
-                Debug.Log("No Button pressed");
-            });
-    }
-    public void OnDialogNeutral()
-    {
-        NativeDialog.OpenDialog("Like this game?", "Please rate to support future updates!", "Rate app", "later", "No, thanks",
-            () =>
-            {
-                Debug.Log("Rate Button pressed");
-            },
-            () =>
-            {
-                Debug.Log("Later Button pressed");
-            },
-            () =>
-            {
-                Debug.Log("No Button pressed");
-            });
-    }
+   
 
     public void OnDatePicker()
     {
@@ -61,29 +36,18 @@ Welcome to Native Popups for iOS and Android! This plugin provides easy access f
                 Debug.Log(_date.ToString());
             });        
     }
-    public void OnTimePicker()
-    {
-        NativeDialog.OpenTimePicker(
-            (DateTime _date) =>
-            {
-                Debug.Log(_date.ToString());
-            },
-            (DateTime _date) =>
-            {
-                Debug.Log(_date.ToString());
-            });
-    }
 ```
 ## Open source
-I have provide all java and object c source.  you can know how it work, optimization, or add any features
+I have provide all `java` and `objective c` source. you can know how it work, optimization, or add any features
+
 ### Android studio
 - Unity call to static function
-```
+```csharp
     AndroidJavaClass javaUnityClass = new AndroidJavaClass("com.pingak9.nativepopup.Bridge");
     javaUnityClass.CallStatic("ShowDialogInfo", title, message, ok);
 ```
 - Java show popup
-```
+```objectivec
     void ShowDialogInfo(String title, String message, String ok) {
 
         AlertDialog alertDialog = new AlertDialog.Builder(this).create(); //Read Update
@@ -100,14 +64,14 @@ I have provide all java and object c source.  you can know how it work, optimiza
     }
 ```
 - Build library jar and file jar to folder Plugins/Android
-### Object C
+### Objective C
 - Unity call to C
-```
+```csharp
     [DllImport("__Internal")]
     private static extern void _TAG_ShowDialogInfo(string title, string message, string ok);
 ```
-- Object C show popup
-```
+- Objective C show popup
+```objectivec
 +(void)ShowDialogInfo: (NSString *) title message: (NSString*) msg okTitle:(NSString*) b1 {
     
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:msg preferredStyle:UIAlertControllerStyleAlert];
@@ -123,7 +87,7 @@ I have provide all java and object c source.  you can know how it work, optimiza
     _currentAllert = alertController;
 }
 ```
-- Copy file object C to folder Plugins/iOS
+- Copy file Objective C to folder Plugins/iOS
 
 
 Happy coding!
