@@ -5,11 +5,11 @@
 ## Feature
 - Ok, Yes/No, Neutral popup (Single, two, three action)
 
-<img src="https://github.com/j1mmyto9/unity-mobile-dialog-popup-native/blob/main/Img/AndroidBox.png"><img src="https://github.com/PingAK9/MobileDialog-Unity/blob/master/Img/iOSBox.png">
+<img src="https://github.com/j1mmyto9/unity-mobile-dialog-popup-native/blob/main/Img/AndroidBox.png"><img src="https://github.com/j1mmyto9/unity-mobile-dialog-popup-native/blob/main/Img/iOSBox.png">
 
 - DatePicker, TimePicker
 
-<img src="https://github.com/j1mmyto9/unity-mobile-dialog-popup-native/blob/main/Img/AndroidDate.png"><img src="https://github.com/PingAK9/MobileDialog-Unity/blob/master/Img/iOSDate.png">
+<img src="https://github.com/j1mmyto9/unity-mobile-dialog-popup-native/blob/main/Img/AndroidDate.png"><img src="https://github.com/j1mmyto9/unity-mobile-dialog-popup-native/blob/main/Img/iOSDate.png">
 
 ## Easy access from Unity
 Welcome to Native Popups for iOS and Android! This plugin provides easy access from Unity to the native functionality of iOS and Android for displaying popups
