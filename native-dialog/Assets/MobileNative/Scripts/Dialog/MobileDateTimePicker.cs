@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System;
 using System.Globalization;
 
@@ -16,13 +16,14 @@ namespace pingak9
         public Action<DateTime> OnDateChanged;
         public Action<DateTime> OnPickerClosed;
 
+        private const string PICKER_OBJECT_NAME = "MobileDateTimePicker";
 
         #region PUBLIC_FUNCTIONS
 
         public static MobileDateTimePicker CreateDate(int year, int month, int day, Action<DateTime> onChange = null, Action<DateTime> onClose = null)
         {
             MobileDateTimePicker dialog;
-            dialog = new GameObject("MobileDateTimePicker").AddComponent<MobileDateTimePicker>();
+            dialog = new GameObject(PICKER_OBJECT_NAME).AddComponent<MobileDateTimePicker>();
             dialog.OnDateChanged = onChange;
             dialog.OnPickerClosed = onClose;
 
@@ -33,7 +34,7 @@ namespace pingak9
         public static MobileDateTimePicker CreateTime(Action<DateTime> onChange = null, Action<DateTime> onClose = null)
         {
             MobileDateTimePicker dialog;
-            dialog = new GameObject("MobileDateTimePicker").AddComponent<MobileDateTimePicker>();
+            dialog = new GameObject(PICKER_OBJECT_NAME).AddComponent<MobileDateTimePicker>();
             dialog.OnDateChanged = onChange;
             dialog.OnPickerClosed = onClose;
 
@@ -51,7 +52,7 @@ namespace pingak9
 
         string formatDate = "yyyy-MM-dd HH:mm:ss";
         /// <summary>
-        /// Note avalible in android
+        /// Note available in android
         /// </summary>
         /// <param name="time"></param>
         public void DateChangedEvent(string time)
@@ -66,8 +67,11 @@ namespace pingak9
         {
             DateTime dt = DateTime.Parse(time);
             //DateTime dt = DateTime.ParseExact(time, formatDate, CultureInfo.InvariantCulture);
-            if (OnPickerClosed != null)
+            if (OnPickerClosed != null){
                 OnPickerClosed(dt);
+                var picker = GameObject.Find(PICKER_OBJECT_NAME);
+                if (picker) Destroy(picker);
+            }
         }
     }
 }
